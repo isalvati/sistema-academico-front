@@ -37,7 +37,10 @@ export class RegisterComponent implements OnInit {
         this.studentService.register(this.registerForm.value).then(data => {
             alert(`Matrícula realizada com sucesso \n usuário: ${data.username} senha: ${data.password}`);
             this.router.navigate(['/']);
-        });
+        }).catch((data) => {
+                alert(data.errorMessage);
+            }
+        );
     }
 
 }

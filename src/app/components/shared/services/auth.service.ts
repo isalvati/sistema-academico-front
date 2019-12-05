@@ -73,7 +73,19 @@ export class AuthService {
         if (token) {
             const expandedToken = this.jwtHelperService.decodeToken(token);
             if (expandedToken) {
-                return expandedToken.sub;
+                return expandedToken.name;
+            }
+        }
+        return null;
+    }
+
+    public getProfile(): string {
+        const token = this.getToken();
+
+        if (token) {
+            const expandedToken = this.jwtHelperService.decodeToken(token);
+            if (expandedToken) {
+                return expandedToken.issuer;
             }
         }
         return null;

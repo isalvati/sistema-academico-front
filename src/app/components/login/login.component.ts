@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../shared/services/auth.service';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
-        private router: Router) {
+        private router: Router, private notificationService: NotificationsService) {
     }
 
     ngOnInit() {
@@ -29,9 +30,11 @@ export class LoginComponent implements OnInit {
         let username = this.loginForm.value.username;
         let password = this.loginForm.value.password;
         this.authService.login(username, password).then(data => {
-            console.log(data);
-            //alert(`Matrícula realizada com sucesso \n usuário: ${data.username} senha: ${data.password}`);
-            //this.router.navigate(['/']);
+            if(!data.success){
+                this.notificationService.error(data.errorMessage);
+            } else {
+                this.router.navigate([`/${this.authService.getProfile().toLocaleLowerCase()}-home`]);
+            }
         });
     }
 

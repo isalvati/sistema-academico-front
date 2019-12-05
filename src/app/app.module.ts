@@ -16,6 +16,11 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TokenService} from './components/shared/services/token.service';
 import {environment} from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
+import { StudentHomeComponent } from './components/student-home/student-home.component';
+import {SimpleNotificationsModule} from 'angular2-notifications';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SecretaryHomeComponent } from './components/secretary-home/secretary-home.component';
+import { TeacherHomeComponent } from './components/teacher-home/teacher-home.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -40,7 +45,10 @@ export function jwtOptionsFactory(tokenService: TokenService) {
         FooterComponent,
         HeaderComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        StudentHomeComponent,
+        SecretaryHomeComponent,
+        TeacherHomeComponent
     ],
     imports: [
         BrowserModule,
@@ -55,6 +63,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
                 deps: [TokenService]
             }
         }),
+        SimpleNotificationsModule.forRoot(),
+        BrowserAnimationsModule
     ],
     providers: [JwtHelperService,
         BaseHttpClient,
