@@ -1,0 +1,51 @@
+// BASIC RESET
+p,
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+*:active,
+*:focus {
+  outline: none !important;
+  -webkit-box-shadow: unset !important;
+  box-shadow: unset !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+html {
+  @include respond(desktop-full-hd) {
+    // 1920 <= width
+    font-size: 112.5%; // 1rem = 18px
+  }
+  @include respond(desktop-large) {
+    // 1440px <= width <= 1919px
+    font-size: 106.25%; // 1rem = 17px
+  }
+  @include respond(desktop-medium) {
+    // 1200px <= width <= 1439px
+    font-size: 100%; // 1rem = 16px
+  }
+  @include respond(desktop) {
+    // 992px - 1199px
+    font-size: 93.75%; // 1rem = 15px
+  }
+  @include respond(tablet) {
+    // 768px - 991px
+    font-size: 87.5%; // 1rem = 14px
+  }
+  @include respond(mobile) {
+    // 576 - 767px
+    font-size: 81.3%; // 1rem = 16 x 0.813 = 13px
+  }
+  @include respond(mobile-small) {
+    // width < 575px
+    font-size: 75%; // 1rem = 16 x 0.75 = 12px
+  }
+}

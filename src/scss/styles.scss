@@ -1,0 +1,49 @@
+// Buttons styles
+
+// ABSTRACTS
+@import 'abstracts/mixins';
+// BASE
+@import 'base/base';
+@import 'base/typography';
+@import 'base/utilities';
+// COMPONENTS
+@import 'components/buttons';
+@import 'components/containers';
+@import 'components/inputs';
+@import 'components/images';
+// LAYOUT
+@import 'layouts/header';
+//@import 'layouts/form';
+// PAGES
+//@import 'pages/home';
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --main-color: #38b6ff;
+  --second-color: #4e70b6;
+  --third-color: #d9d9d9;
+  --header-height: 8rem;
+}
+
+@font-face {
+  font-family: Montserrat-regular;
+  src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+
+
+* {
+  font-family: Montserrat-regular;
+  font-size: 0.9rem;
+}
+
+body, html {
+  height: 100%;
+}
+
+section {
+  margin: 15px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #FFF;
+}

@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name-input">Nome</label>
+                    <input type="text" class="form-control" id="name-input" formControlName="name">
+                </div>
+                <div class="form-group">
+                    <label for="document-input">CPF</label>
+                    <input type="text" class="form-control" id="document-input" mask="000.000.000-00" formControlName="document">
+                </div>
+                <div class="form-group">
+                    <label for="birthdate-input">Data de nascimento</label>
+                    <input type="text" class="form-control" id="birthdate-input" mask="00/00/0000" formControlName="birthdate">
+                </div>
+                <div class="form-group">
+                    <label for="email-input">Email</label>
+                    <input type="email" class="form-control" id="email-input" formControlName="email">
+                </div>
+                <div class="form-group">
+                    <label for="phone-input">Telefone</label>
+                    <input type="text" class="form-control" id="phone-input" mask="(00) 0 0000-0000" formControlName="phone">
+                </div>
+                <div class="form-group">
+                    <label for="address-input">Endereço</label>
+                    <input type="text" class="form-control" id="address-input" formControlName="address">
+                </div>
+                <div class="form-group">
+                    <label for="course-input">Curso</label>
+                    <input type="text" class="form-control" id="course-input" formControlName="course">
+                </div>
+                <button type="submit" class="btn btn-primary">Realizar Matrícula</button>
+                <a class="btn btn-light" routerLinkActive="active" [routerLink]="['/']">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+.container- {
+  &background-image {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    margin: auto;
+  }
+
+}
+
+
+.barcode-form-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  @include respond(desktop-medium) {
+    // 1200px <= width <= 1439px
+    top: 55%;
+  }
+}
+
+.internet-banking-label {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
