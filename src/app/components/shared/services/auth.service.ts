@@ -102,6 +102,20 @@ export class AuthService {
         if (!this.userToken) {
             this.loadDataFromToken();
         }
+
         return Promise.resolve(this.userToken && this.userToken.identifier);
+    }
+
+    public getUserId(): number {
+        const token = this.getToken();
+
+        if (token) {
+            const expandedToken = this.jwtHelperService.decodeToken(token);
+            if (expandedToken) {
+                console.log(expandedToken);
+                return expandedToken.identifier;
+            }
+        }
+        return null;
     }
 }

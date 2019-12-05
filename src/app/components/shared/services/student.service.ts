@@ -15,19 +15,19 @@ export class StudentService {
         return this.http.post(`student/register`, transacao).toPromise();
     }
 
-    public listAll(params: any): Promise<any> {
-        return this.http.list(`${'transacao_ib/todas'}`, params).toPromise();
+    public getStudentByUser(userId: number): Promise<any> {
+        return this.http.get(`student/user/${userId}`).toPromise();
     }
 
-    public total(params: any): Promise<any> {
-        return this.http.list(`${'transacao_ib/total'}`, params).toPromise();
+    public lockRegister(studentId: number): Promise<any> {
+        return this.http.post(`student/lock/${studentId}`, null).toPromise();
     }
 
-    public detalhesNexxera(nsu: string): Promise<any> {
-        return this.http.get(`${'transacao_ib/status_nexxera/' + nsu}`).toPromise();
+    public renewRegister(studentId: number): Promise<any> {
+        return this.http.post(`student/renew/${studentId}`, null).toPromise();
     }
 
-    public listaBancos(): Promise<any> {
-        return this.http.get(`${'transacao_ib/bancos'}`).toPromise();
+    public update(studentId: number, data: any): Promise<any> {
+        return this.http.post(`student/update/${studentId}`, data).toPromise();
     }
 }

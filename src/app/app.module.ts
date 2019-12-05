@@ -12,15 +12,16 @@ import {HomeComponent} from './components/home/home.component';
 import {BaseHttpClient} from './components/shared/services/base-http-client.service';
 import {JWT_OPTIONS, JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 import {StudentService} from './components/shared/services/student.service';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {TokenService} from './components/shared/services/token.service';
 import {environment} from '../environments/environment';
-import { LoginComponent } from './components/login/login.component';
-import { StudentHomeComponent } from './components/student-home/student-home.component';
+import {LoginComponent} from './components/login/login.component';
+import {StudentHomeComponent} from './components/student-home/student-home.component';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SecretaryHomeComponent } from './components/secretary-home/secretary-home.component';
-import { TeacherHomeComponent } from './components/teacher-home/teacher-home.component';
+import {SecretaryHomeComponent} from './components/secretary-home/secretary-home.component';
+import {TeacherHomeComponent} from './components/teacher-home/teacher-home.component';
+import {CustomHttpInterceptor} from './components/shared/interceptors/custom-http-interceptor';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -33,7 +34,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
             return tokenService.getToken();
         },
         whitelistedDomains: [apiServer], // Servidor da API
-        headerName: 'Authorization', // Nome do header de authentication
+        headerName: 'AUTHORIZATION', // Nome do header de authentication
         authScheme: '' // texto antes do token no header de authentication
     };
 }
@@ -69,7 +70,11 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     providers: [JwtHelperService,
         BaseHttpClient,
         StudentService,
-        HttpClient
+        HttpClient, {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CustomHttpInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

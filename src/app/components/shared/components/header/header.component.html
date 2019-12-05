@@ -1,9 +1,11 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h1>SISTEMA ACADÊMICO - PUC MINAS</h1>
-      <button *ngIf="this.authService.isAuthenticated()" class="btn btn-danger float-right" (click)="logout()">Sair</button>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>SISTEMA ACADÊMICO - PUC MINAS</h1>
+            <button *ngIf="this.authService.isAuthenticated()" class="btn btn-danger float-right" (click)="logout()">
+                Sair
+            </button>
+        </div>
     </div>
-  </div>
-  <hr class="horizontal-row-header"/>
+    <hr class="horizontal-row-header"/>
 </div>
