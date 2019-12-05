@@ -37,9 +37,9 @@ export class AuthService {
         this.loggedIn = true;
     }
 
-    public login(username: string, password: string): Promise<{ success: boolean, errorMessage?: string, alterarSenha?: string }> {
+    public login(username: string, password: string): Promise<any> {
         let headers = new HttpHeaders();
-        // headers = headers.set('consumer_key', username).set('consumer_secret', password);
+         headers = headers.set('key', username).set('secret', password);
 
         return this.http.get(`${this.baseUrl}/token`, {
             headers
@@ -49,7 +49,7 @@ export class AuthService {
             // this.tokenService.setFunctionality(decodedToken.functionality);
 
             this.setToken(data['authorization']);
-            return {success: true, errorMessage: '', alterarSenha: data['ALTERAR_SENHA']};
+            return {success: true, errorMessage: ''};
         }).catch(error => {
             return {
                 success: false,

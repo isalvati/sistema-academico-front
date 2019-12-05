@@ -13,7 +13,6 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
     registerForm: FormGroup;
-    documentMask = '';
 
     constructor(
         private formBuilder: FormBuilder,

@@ -15,6 +15,7 @@ import {StudentService} from './components/shared/services/student.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TokenService} from './components/shared/services/token.service';
 import {environment} from '../environments/environment';
+import { LoginComponent } from './components/login/login.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -38,7 +39,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
         RegisterComponent,
         FooterComponent,
         HeaderComponent,
-        HomeComponent
+        HomeComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,
