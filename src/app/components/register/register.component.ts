@@ -4,6 +4,7 @@ import {cpfCnpjValidator} from '../shared/validators/cpf-cnpj-validator';
 import {dateValidator} from '../shared/validators/date-validator';
 import {StudentService} from '../shared/services/student.service';
 import {Router} from '@angular/router';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
     selector: 'app-register',
@@ -13,11 +14,12 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
     registerForm: FormGroup;
-
+    loading: Boolean = false;
     constructor(
         private formBuilder: FormBuilder,
         private studentService: StudentService,
-        private router: Router) {
+        private router: Router,
+        private notificationService: NotificationsService) {
     }
 
     ngOnInit() {
@@ -34,11 +36,19 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         console.log(this.registerForm.value);
+        this.loading = true;
         this.studentService.register(this.registerForm.value).then(data => {
-            alert(`Matrícula realizada com sucesso \n usuário: ${data.username} senha: ${data.password}`);
-            this.router.navigate(['/']);
+            this.notificationService.success('Matrícula realizada com sucesso');
+
+            setTimeout(() =>
+                {
+                    this.loading = false;
+                    this.router.navigate(['/']);
+                },
+                5000);
+            //this.router.navigate(['/']);
         }).catch((data) => {
-                alert(data.errorMessage);
+                this.notificationService.error('Erro realizar matrícula');
             }
         );
     }

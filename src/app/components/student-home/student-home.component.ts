@@ -28,6 +28,8 @@ export class StudentHomeComponent implements OnInit {
 
     ngOnInit() {
         if (!this.authService.isAuthenticated()) {
+            this.notificationService.error('Usuário não autenticado');
+            this.authService.logout();
             this.router.navigate(['/']);
         } else if ('STUDENT' !== this.authService.getProfile()) {
             this.notificationService.error('Você não ter permissão para acessar essa tela');
@@ -54,6 +56,10 @@ export class StudentHomeComponent implements OnInit {
                 course: [{value: this.student.course, disabled: true}, Validators.required]
             });
             this.loaded = true;
+        }).catch(data => {
+
+            this.loaded = true;
+            this.notificationService.error('Erro ao obter dados do aluno');
         });
     }
 
